@@ -108,6 +108,9 @@ Route::middleware(['auth', 'verified', 'role:super_admin'])
 
         Route::resource('coupons', \App\Http\Controllers\Admin\CouponController::class)->except(['show']);
         Route::get('/earnings', [\App\Http\Controllers\Admin\EarningsController::class, 'index'])->name('earnings.index');
+        Route::get('/commissions', [\App\Http\Controllers\Admin\CommissionController::class, 'index'])->name('commissions.index');
+        Route::put('/commissions/{vendor}', [\App\Http\Controllers\Admin\CommissionController::class, 'update'])->name('commissions.update');
+        Route::put('/commissions-bulk', [\App\Http\Controllers\Admin\CommissionController::class, 'bulk'])->name('commissions.bulk');
         Route::post('/earnings/{earning}/settle', [\App\Http\Controllers\Admin\EarningsController::class, 'settle'])->name('earnings.settle');
         Route::post('/coupons/{coupon}/toggle', [\App\Http\Controllers\Admin\CouponController::class, 'toggle'])->name('coupons.toggle');
 

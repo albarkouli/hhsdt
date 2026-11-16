@@ -37,6 +37,7 @@
                                 <a href="{{ route('admin.reviews.index') }}" class="px-2.5 py-1.5 rounded-md text-xs font-semibold text-gray-300 hover:bg-gray-900 hover:text-lime-400">Reviews</a>
                                 <a href="{{ route('admin.coupons.index') }}" class="px-2.5 py-1.5 rounded-md text-xs font-semibold text-gray-300 hover:bg-gray-900 hover:text-lime-400">Coupons</a>
                                 <a href="{{ route('admin.earnings.index') }}" class="px-2.5 py-1.5 rounded-md text-xs font-semibold text-gray-300 hover:bg-gray-900 hover:text-lime-400">Earnings</a>
+                                <a href="{{ route('admin.commissions.index') }}" class="px-2 py-1 text-sm text-gray-300 hover:bg-gray-900 hover:text-lime-400">Commissions</a>
                                 <a href="{{ route('admin.messages.index') }}" class="px-2.5 py-1.5 rounded-md text-xs font-semibold text-gray-300 hover:bg-gray-900 hover:text-lime-400">Messages</a>
                             </div>
                         @endif
@@ -87,6 +88,7 @@
                     <a href="{{ route('admin.reviews.index') }}" class="block px-3 py-2.5 text-sm text-gray-300 hover:bg-gray-900 hover:text-lime-400 rounded-md">Reviews</a>
                     <a href="{{ route('admin.coupons.index') }}" class="block px-3 py-2.5 text-sm text-gray-300 hover:bg-gray-900 hover:text-lime-400 rounded-md">Coupons</a>
                     <a href="{{ route('admin.earnings.index') }}" class="block px-3 py-2.5 text-sm text-gray-300 hover:bg-gray-900 hover:text-lime-400 rounded-md">Earnings</a>
+                                <a href="{{ route('admin.commissions.index') }}" class="px-2 py-1 text-sm text-gray-300 hover:bg-gray-900 hover:text-lime-400">Commissions</a>
                     <a href="{{ route('admin.messages.index') }}" class="block px-3 py-2.5 text-sm text-gray-300 hover:bg-gray-900 hover:text-lime-400 rounded-md">Messages</a>
                 @endif
                 @if (auth()->user()->hasRole('vendor') && auth()->user()->vendor)

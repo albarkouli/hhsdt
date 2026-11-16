@@ -106,6 +106,7 @@
             <a href="{{ route('admin.categories.index') }}" class="px-4 py-2.5 bg-purple-500 text-white font-black rounded-lg text-sm hover:bg-purple-400">Categories</a>
             <a href="{{ route('admin.coupons.index') }}" class="px-4 py-2.5 bg-teal-500 text-white font-black rounded-lg text-sm hover:bg-teal-400">Coupons</a>
             <a href="{{ route('admin.earnings.index') }}" class="px-4 py-2.5 bg-emerald-500 text-white font-black rounded-lg text-sm hover:bg-emerald-400">Earnings</a>
+            <a href="{{ route('admin.commissions.index') }}" class="px-4 py-2.5 bg-teal-500 text-white font-black rounded-lg text-sm hover:bg-teal-400">Commissions</a>
             <a href="{{ route('admin.reviews.index') }}" class="px-4 py-2.5 bg-orange-500 text-white font-black rounded-lg text-sm hover:bg-orange-400">Reviews</a>
             <a href="{{ route('admin.messages.index') }}" class="px-4 py-2.5 bg-pink-500 text-white font-black rounded-lg text-sm hover:bg-pink-400">Messages</a>
         </div>
