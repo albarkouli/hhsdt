@@ -88,7 +88,6 @@
                     <a href="{{ route('admin.reviews.index') }}" class="block px-3 py-2.5 text-sm text-gray-300 hover:bg-gray-900 hover:text-lime-400 rounded-md">Reviews</a>
                     <a href="{{ route('admin.coupons.index') }}" class="block px-3 py-2.5 text-sm text-gray-300 hover:bg-gray-900 hover:text-lime-400 rounded-md">Coupons</a>
                     <a href="{{ route('admin.earnings.index') }}" class="block px-3 py-2.5 text-sm text-gray-300 hover:bg-gray-900 hover:text-lime-400 rounded-md">Earnings</a>
-                                <a href="{{ route('admin.commissions.index') }}" class="px-2 py-1 text-sm text-gray-300 hover:bg-gray-900 hover:text-lime-400">Commissions</a>
                     <a href="{{ route('admin.messages.index') }}" class="block px-3 py-2.5 text-sm text-gray-300 hover:bg-gray-900 hover:text-lime-400 rounded-md">Messages</a>
                 @endif
                 @if (auth()->user()->hasRole('vendor') && auth()->user()->vendor)
