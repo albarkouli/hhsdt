@@ -1,0 +1,120 @@
+<x-layouts.shop :title="'Shop'">
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+
+        {{-- SIDEBAR FILTERS --}}
+        <aside class="lg:col-span-1">
+            <form method="GET" action="{{ route('shop.products.index') }}" class="bg-[#171717] border border-gray-800 rounded-2xl p-5 space-y-5 lg:sticky lg:top-32">
+                <div class="flex items-center justify-between">
+                    <h2 class="font-black text-white text-lg">Filters</h2>
+                    @if ($hasFilters)
+                        <a href="{{ route('shop.products.index') }}" class="text-xs font-bold text-lime-400 hover:text-lime-300">Clear</a>
+                    @endif
+                </div>
+
+                <div>
+                    <label class="block text-xs font-black uppercase tracking-widest text-gray-500 mb-2">Search</label>
+                    <input name="q" type="text" value="{{ $q }}" placeholder="Product name..."
+                           class="w-full rounded-lg bg-gray-900 border border-gray-800 text-white text-sm px-3 py-2.5 placeholder-gray-600 focus:border-lime-400 focus:ring-2 focus:ring-lime-400/20">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-black uppercase tracking-widest text-gray-500 mb-2">Category</label>
+                    <select name="category" class="w-full rounded-lg bg-gray-900 border border-gray-800 text-white text-sm px-3 py-2.5 focus:border-lime-400 focus:ring-2 focus:ring-lime-400/20">
+                        <option value="">All categories</option>
+                        @foreach ($categories as $cat)
+                            <option value="{{ $cat->slug }}" @selected($categorySlug === $cat->slug)>{{ $cat->name }} ({{ $cat->products_count }})</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-black uppercase tracking-widest text-gray-500 mb-2">Price (LYD)</label>
+                    <div class="grid grid-cols-2 gap-2">
+                        <input name="min_price" type="number" min="0" step="0.01" value="{{ $minPrice }}" placeholder="Min" class="w-full rounded-lg bg-gray-900 border border-gray-800 text-white text-sm px-3 py-2 placeholder-gray-600 focus:border-lime-400">
+                        <input name="max_price" type="number" min="0" step="0.01" value="{{ $maxPrice }}" placeholder="Max" class="w-full rounded-lg bg-gray-900 border border-gray-800 text-white text-sm px-3 py-2 placeholder-gray-600 focus:border-lime-400">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-black uppercase tracking-widest text-gray-500 mb-2">Sort by</label>
+                    <select name="sort" class="w-full rounded-lg bg-gray-900 border border-gray-800 text-white text-sm px-3 py-2.5 focus:border-lime-400">
+                        <option value="newest" @selected($sort === 'newest')>Newest first</option>
+                        <option value="price_asc" @selected($sort === 'price_asc')>Price: Low → High</option>
+                        <option value="price_desc" @selected($sort === 'price_desc')>Price: High → Low</option>
+                        <option value="rating" @selected($sort === 'rating')>Top rated</option>
+                    </select>
+                </div>
+
+                <label class="flex items-center gap-2 text-sm text-gray-300 cursor-pointer">
+                    <input type="checkbox" name="include_out_of_stock" value="1" @checked($includeOutOfStock) class="w-4 h-4 rounded bg-gray-900 border-gray-700 text-lime-400 focus:ring-lime-400">
+                    <span class="font-semibold">Include out of stock</span>
+                </label>
+
+                <button type="submit" class="w-full bg-lime-400 text-black font-black py-2.5 rounded-lg hover:bg-lime-300 text-sm">
+                    Apply filters
+                </button>
+            </form>
+        </aside>
+        {{-- RESULTS --}}
+        <div class="lg:col-span-3">
+            <div class="flex items-center justify-between mb-5">
+                <div>
+                    <h1 class="text-2xl font-black text-white">
+                        {{ $totalCount }} product{{ $totalCount === 1 ? '' : 's' }}
+                    </h1>
+                    @if ($q !== '')
+                        <p class="text-sm text-gray-500 mt-1">Results for "<span class="text-lime-400 font-bold">{{ $q }}</span>"</p>
+                    @endif
+                </div>
+            </div>
+
+            @if ($products->isEmpty())
+                <div class="bg-[#171717] border border-gray-800 rounded-2xl p-16 text-center">
+                    <div class="w-16 h-16 rounded-full bg-gray-900 flex items-center justify-center mx-auto mb-4">
+                        <svg class="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    </div>
+                    <h3 class="text-lg font-black text-white mb-2">No products found</h3>
+                    <p class="text-sm text-gray-500 mb-5">Try adjusting your filters or search terms.</p>
+                    @if ($hasFilters)
+                        <a href="{{ route('shop.products.index') }}" class="inline-block px-6 py-2.5 bg-lime-400 text-black font-black rounded-lg text-sm hover:bg-lime-300">Clear all filters</a>
+                    @endif
+                </div>
+            @else
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                    @foreach ($products as $product)
+                        <a href="{{ route('shop.products.show', $product) }}" class="group bg-[#171717] border border-gray-800 rounded-xl overflow-hidden flex flex-col hover:border-gray-700 hover:-translate-y-1 hover:shadow-2xl">
+                            <div class="relative overflow-hidden bg-gray-900 aspect-square">
+                                @if ($product->image)
+                                    <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                                @else
+                                    <div class="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center text-6xl text-gray-700 font-black">{{ Str::substr($product->name, 0, 1) }}</div>
+                                @endif
+                                @if ($product->stock == 0)
+                                    <span class="absolute top-2 left-2 bg-red-500 text-white text-[10px] font-black uppercase tracking-wider px-2 py-1 rounded">Out of stock</span>
+                                @elseif ($product->stock < 5)
+                                    <span class="absolute top-2 right-2 bg-orange-500 text-white text-[10px] font-black uppercase tracking-wider px-2 py-1 rounded">{{ $product->stock }} left</span>
+                                @endif
+                            </div>
+                            <div class="p-3 flex-1 flex flex-col">
+                                <h3 class="font-bold text-white text-sm line-clamp-2 leading-snug">{{ $product->name }}</h3>
+                                <p class="text-xs text-gray-500 mt-1">{{ $product->vendor->name }}</p>
+                                @if ($product->reviews_count > 0)
+                                    <div class="flex items-center gap-1 mt-1.5">
+                                        <span class="text-lime-400 text-xs">&#9733;</span>
+                                        <span class="text-xs font-bold text-white">{{ number_format($product->avg_rating, 1) }}</span>
+                                        <span class="text-xs text-gray-500">({{ $product->reviews_count }})</span>
+                                    </div>
+                                @endif
+                                <div class="mt-auto pt-2.5">
+                                    <span class="font-black text-lime-400 text-base">{{ number_format((float) $product->price, 2) }}</span>
+                                    <span class="text-xs text-gray-500 ml-1">LYD</span>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+                <div class="mt-8">{{ $products->links() }}</div>
+            @endif
+        </div>
+    </div>
+</x-layouts.shop>
