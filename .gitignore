@@ -41,3 +41,14 @@ yarn-error.log
 
 # Allow env template
 !.env.production.example
+
+# Backup files
+*.bak
+*.bak_*
+.env.*.bak
+backups.log
+database/backups/
+
+# Random tinker files
+character_maximum_length
+nu
