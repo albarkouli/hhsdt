@@ -45,14 +45,15 @@ Route::prefix('shop')->name('shop.')->group(function () {
             ->name('reviews.destroy');
     });
     Route::get('/stores/{vendor:slug}', [ShopStore::class, 'show'])->name('stores.show');
-
     Route::prefix('cart')->name('cart.')->group(function () {
         Route::get('/', [ShopCart::class, 'index'])->name('index');
         Route::post('/add/{product}', [ShopCart::class, 'add'])->middleware('throttle:cart')->name('add');
         Route::patch('/update/{product}', [ShopCart::class, 'update'])->middleware('throttle:cart')->name('update');
         Route::delete('/remove/{product}', [ShopCart::class, 'remove'])->name('remove');
         Route::delete('/clear', [ShopCart::class, 'clear'])->name('clear');
-        Route::post('/coupon', [ShopCart::class, 'applyCoupon'])->middleware('throttle:cart')->name('coupon.apply');
+        Route::post('/coupon', [ShopCart::class, 'applyCoupon'])
+            ->middleware(['auth', 'throttle:cart'])
+            ->name('coupon.apply');
         Route::delete('/coupon', [ShopCart::class, 'removeCoupon'])->name('coupon.remove');
     });
 
@@ -131,6 +132,7 @@ Route::middleware(['auth', 'verified', 'role:vendor'])
     ->name('vendor.')
     ->group(function () {
         Route::get('/dashboard', [VendorDashboard::class, 'index'])->name('dashboard');
+
         Route::resource('products', VendorProduct::class)->except(['show'])->middlewareFor(['store', 'update', 'destroy'], 'throttle:vendor-writes');
 
         Route::get('/settings', [VendorSettings::class, 'edit'])->name('settings.edit');

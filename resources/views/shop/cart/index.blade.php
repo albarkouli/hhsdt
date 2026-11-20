@@ -74,28 +74,34 @@
                     <h2 class="font-black text-white text-lg">Order summary</h2>
 
                     {{-- Coupon --}}
-                    @php $appliedCoupon = app(\App\Services\CartService::class)->getCoupon(); @endphp
-                    @if ($appliedCoupon)
-                        <div class="bg-lime-400/10 border border-lime-400/30 rounded-lg p-3">
-                            <div class="flex items-center justify-between">
-                                <div>
-                                    <div class="font-mono font-black text-lime-400 text-sm">{{ $appliedCoupon->code }}</div>
-                                    <div class="text-[10px] text-gray-500 mt-0.5">{{ $appliedCoupon->name }}</div>
+                    @auth
+                        @php $appliedCoupon = app(\App\Services\CartService::class)->getCoupon(); @endphp
+                        @if ($appliedCoupon)
+                            <div class="bg-lime-400/10 border border-lime-400/30 rounded-lg p-3">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <div class="font-mono font-black text-lime-400 text-sm">{{ $appliedCoupon->code }}</div>
+                                        <div class="text-[10px] text-gray-500 mt-0.5">{{ $appliedCoupon->name }}</div>
+                                    </div>
+                                    <form method="POST" action="{{ route('shop.cart.coupon.remove') }}">
+                                        @csrf @method('DELETE')
+                                        <button class="text-xs font-bold text-red-400 hover:text-red-300">Remove</button>
+                                    </form>
                                 </div>
-                                <form method="POST" action="{{ route('shop.cart.coupon.remove') }}">
-                                    @csrf @method('DELETE')
-                                    <button class="text-xs font-bold text-red-400 hover:text-red-300">Remove</button>
-                                </form>
                             </div>
-                        </div>
+                        @else
+                            <form method="POST" action="{{ route('shop.cart.coupon.apply') }}" class="flex gap-2">
+                                @csrf
+                                <input name="code" type="text" placeholder="Coupon code" maxlength="30"
+                                       class="flex-1 rounded-lg bg-gray-900 border border-gray-800 text-white text-sm font-mono uppercase px-3 py-2 placeholder-gray-600 focus:border-lime-400" style="text-transform:uppercase">
+                                <button type="submit" class="px-4 py-2 bg-gray-800 text-white text-xs font-black rounded-lg hover:bg-gray-700">Apply</button>
+                            </form>
+                        @endif
                     @else
-                        <form method="POST" action="{{ route('shop.cart.coupon.apply') }}" class="flex gap-2">
-                            @csrf
-                            <input name="code" type="text" placeholder="Coupon code" maxlength="30"
-                                   class="flex-1 rounded-lg bg-gray-900 border border-gray-800 text-white text-sm font-mono uppercase px-3 py-2 placeholder-gray-600 focus:border-lime-400" style="text-transform:uppercase">
-                            <button type="submit" class="px-4 py-2 bg-gray-800 text-white text-xs font-black rounded-lg hover:bg-gray-700">Apply</button>
-                        </form>
-                    @endif
+                        <div class="rounded-lg bg-gray-900 border border-gray-800 p-3 text-xs text-gray-400 text-center">
+                            <a href="{{ route('login') }}" class="text-lime-400 font-bold hover:text-lime-300">Login</a> to use coupons
+                        </div>
+                    @endauth
 
                     {{-- Totals --}}
                     <div class="space-y-2 pt-2">

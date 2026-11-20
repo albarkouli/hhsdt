@@ -12,7 +12,6 @@
             @csrf
             @if ($product->exists) @method('PUT') @endif
 
-            {{-- Image --}}
             <div>
                 <label class="block text-xs font-black uppercase tracking-widest text-gray-500 mb-2">Product image</label>
                 @if ($product->image)

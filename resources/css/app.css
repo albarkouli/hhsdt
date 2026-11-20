@@ -104,3 +104,21 @@ a, button, input, select, textarea {
     transform: translateY(-2px);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
 }
+/* === SHOP LAYOUT — CSS Grid صريح لا يعتمد على Tailwind === */
+.shop-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .shop-grid {
+        grid-template-columns: 220px minmax(0, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .shop-grid {
+        grid-template-columns: 260px minmax(0, 1fr);
+    }
+}

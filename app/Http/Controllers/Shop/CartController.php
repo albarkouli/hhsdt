@@ -78,7 +78,11 @@ class CartController extends Controller
 
     public function applyCoupon(\Illuminate\Http\Request $request, CartService $cart, CouponService $coupons): \Illuminate\Http\RedirectResponse
     {
-        $code = $request->string('code')->trim()->toString();
+        
+        if (! auth()->check()) {
+            return redirect()->route('login')->with('cart_error', 'Please login to use coupons.');
+        }
+$code = $request->string('code')->trim()->toString();
 
         if ($code === '') {
             return back()->with('cart_error', 'Please enter a coupon code.');
@@ -102,7 +106,7 @@ class CartController extends Controller
 
         $cart->applyCoupon($coupon);
 
-        return back()->with('cart_status', "Coupon \"{$coupon->code}\" applied — you save " . number_format($discount, 2) . ' LYD.');
+        return back()->with('cart_status', "Coupon \"{$coupon->code}\" applied â€” you save " . number_format($discount, 2) . ' LYD.');
     }
 
     public function removeCoupon(CartService $cart): \Illuminate\Http\RedirectResponse
