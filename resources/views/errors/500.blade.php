@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>500 â€” Server error آ· Libya Market</title>
+    <title>500 - Server error | Libya Market</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css'])

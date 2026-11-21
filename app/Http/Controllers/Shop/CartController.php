@@ -106,7 +106,7 @@ $code = $request->string('code')->trim()->toString();
 
         $cart->applyCoupon($coupon);
 
-        return back()->with('cart_status', "Coupon \"{$coupon->code}\" applied â€” you save " . number_format($discount, 2) . ' LYD.');
+        return back()->with('cart_status', "Coupon \"{$coupon->code}\" applied - you save " . number_format($discount, 2) . ' LYD.');
     }
 
     public function removeCoupon(CartService $cart): \Illuminate\Http\RedirectResponse
