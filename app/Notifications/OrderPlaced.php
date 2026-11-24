@@ -26,7 +26,7 @@ class OrderPlaced extends Notification implements ShouldQueue
         return (new MailMessage)
             ->subject("New order {$order->order_number}")
             ->greeting("Hello {$notifiable->name}!")
-            ->line("You have a new order on Libya Marketplace.")
+            ->line("You have a new order on WESALKOM.")
             ->line("**Order:** {$order->order_number}")
             ->line("**Customer:** {$order->user->name}")
             ->line("**Total:** " . number_format((float) $order->total, 2) . " LYD")
@@ -44,7 +44,7 @@ class OrderPlaced extends Notification implements ShouldQueue
             'order_id'   => $order->id,
             'order_number' => $order->order_number,
             'title'      => "New order {$order->order_number}",
-            'message'    => "From {$order->user->name} — " . number_format((float) $order->total, 2) . ' LYD',
+            'message'    => "From {$order->user->name} â€” " . number_format((float) $order->total, 2) . ' LYD',
             'url'        => route('vendor.orders.show', $order),
         ];
     }

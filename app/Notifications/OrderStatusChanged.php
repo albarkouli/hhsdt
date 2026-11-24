@@ -38,7 +38,7 @@ class OrderStatusChanged extends Notification implements ShouldQueue
         };
 
         $message = (new MailMessage)
-            ->subject("{$title} — {$order->order_number}")
+            ->subject("{$title} â€” {$order->order_number}")
             ->greeting("Hello {$notifiable->name}!")
             ->line($title . '.')
             ->line("**Order:** {$order->order_number}")
@@ -67,7 +67,7 @@ class OrderStatusChanged extends Notification implements ShouldQueue
 
         return $message
             ->action('View order', route('shop.orders.show', $order))
-            ->line('Thank you for shopping on Libya Marketplace.');
+            ->line('Thank you for shopping on WESALKOM.');
     }
 
     public function toArray(object $notifiable): array

@@ -15,8 +15,8 @@
     $progressPercent = $reachedCount > 0 ? (($reachedCount - 1) / 3) * 100 : 0;
 @endphp
 
-<div class="bg-[#171717] border border-gray-800 rounded-2xl p-5 sm:p-6">
-    <h2 class="font-black text-white mb-5 text-lg">Order Tracking</h2>
+<div class="bg-[#171717] border border-[#344453] rounded-2xl p-5 sm:p-6">
+    <h2 class="font-black text-[#D6DEE6] mb-5 text-lg">Order Tracking</h2>
 
     @if ($isCancelled)
         <div class="flex items-center gap-3 p-4 rounded-xl bg-red-500/10 border border-red-500/30">
@@ -26,14 +26,14 @@
             <div>
                 <div class="font-black text-red-400">Order Cancelled</div>
                 @if ($order->cancelled_at)
-                    <div class="text-xs text-gray-500 mt-0.5">{{ $order->cancelled_at->format('M d, Y · H:i') }}</div>
+                    <div class="text-xs text-[#A8B5C1] mt-0.5">{{ $order->cancelled_at->format('M d, Y ط¢آ· H:i') }}</div>
                 @endif
             </div>
         </div>
     @else
         <div class="relative">
-            <div class="absolute top-5 left-[12%] right-[12%] h-0.5 bg-gray-800"></div>
-            <div class="absolute top-5 left-[12%] h-0.5 bg-lime-400 transition-all duration-500"
+            <div class="absolute top-5 left-[12%] right-[12%] h-0.5 bg-[#2D3D4C]"></div>
+            <div class="absolute top-5 left-[12%] h-0.5 bg-gold transition-all duration-500"
                  style="width: {{ $progressPercent * 0.76 }}%"></div>
 
             <div class="relative grid grid-cols-4 gap-1">
@@ -41,8 +41,8 @@
                     <div class="flex flex-col items-center text-center">
                         <div @class([
                             'w-10 h-10 rounded-full flex items-center justify-center mb-2 relative z-10 border-2 transition',
-                            'bg-lime-400 text-black border-lime-400' => $stage['reached'],
-                            'bg-[#171717] text-gray-600 border-gray-800' => ! $stage['reached'],
+                            'bg-gold text-[#D6DEE6] border-gold' => $stage['reached'],
+                            'bg-[#171717] text-[#A8B5C1] border-[#344453]' => ! $stage['reached'],
                         ])>
                             @if ($stage['label'] === 'Placed')
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
@@ -54,9 +54,9 @@
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
                             @endif
                         </div>
-                        <div class="text-[11px] sm:text-xs font-black {{ $stage['reached'] ? 'text-white' : 'text-gray-500' }}">{{ $stage['label'] }}</div>
+                        <div class="text-[11px] sm:text-xs font-black {{ $stage['reached'] ? 'text-[#D6DEE6]' : 'text-[#A8B5C1]' }}">{{ $stage['label'] }}</div>
                         @if ($stage['time'])
-                            <div class="text-[9px] sm:text-[10px] text-gray-500 mt-0.5">{{ $stage['time']->format('M d') }}<br>{{ $stage['time']->format('H:i') }}</div>
+                            <div class="text-[9px] sm:text-[10px] text-[#A8B5C1] mt-0.5">{{ $stage['time']->format('M d') }}<br>{{ $stage['time']->format('H:i') }}</div>
                         @endif
                     </div>
                 @endforeach

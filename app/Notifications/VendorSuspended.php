@@ -28,7 +28,7 @@ class VendorSuspended extends Notification implements ShouldQueue
             ->greeting("Hello {$notifiable->name},")
             ->line("Your store **{$this->vendor->name}** has been {$action}.")
             ->line('Your existing orders are still being processed, but new products will not be visible to customers.')
-            ->line('If you believe this is a mistake, please contact us at hello@libyamarketplace.ly')
+            ->line('If you believe this is a mistake, please contact us at hello@wesalkom.ly')
             ->line('Thank you for your understanding.');
     }
 

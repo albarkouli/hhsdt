@@ -1,0 +1,218 @@
+@import 'tailwindcss';
+@import '../../vendor/livewire/flux/dist/flux.css';
+
+@source '../views';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
+@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================================
+   WESALKOM | وصالكم — DESIGN SYSTEM v2.0
+   Navy #1F2A36 · Gold #D9A441 · Ivory #F7F4EF · Blue #00AEEF
+   ============================================================ */
+
+@theme {
+    /* ---------- Brand Core ---------- */
+    --color-navy: #1F2A36;
+    --color-gold: #D9A441;
+    --color-gold-hover: #B8872E;
+    --color-gold-soft: rgba(217, 164, 65, 0.12);
+    --color-ivory: #F7F4EF;
+    --color-ivory-soft: #FBF9F5;
+    --color-ivory-border: #E8E2D6;
+    --color-blue: #00AEEF;
+    --color-blue-hover: #0095CC;
+
+    /* ---------- Gold Palette ---------- */
+    --color-gold-50:  #FBF7EA;
+    --color-gold-100: #F5EBC9;
+    --color-gold-200: #ECD596;
+    --color-gold-300: #E3C06A;
+    --color-gold-400: #D9A441;
+    --color-gold-500: #C8922F;
+    --color-gold-600: #B8872E;
+    --color-gold-700: #8A6420;
+    --color-gold-800: #5C4417;
+    --color-gold-900: #2E220C;
+
+    /* ---------- Navy Palette ---------- */
+    --color-navy-50:  #F2F4F6;
+    --color-navy-100: #E1E5EA;
+    --color-navy-200: #C3CAD3;
+    --color-navy-300: #A5AFBD;
+    --color-navy-400: #5F6C7D;
+    --color-navy-500: #1F2A36;
+    --color-navy-600: #172029;
+    --color-navy-700: #131A22;
+    --color-navy-800: #0E1319;
+    --color-navy-900: #0A0E13;
+
+    /* ---------- Semantic ---------- */
+    --color-success: #16A34A;
+    --color-success-soft: rgba(22, 163, 74, 0.12);
+    --color-warning: #F59E0B;
+    --color-warning-soft: rgba(245, 158, 11, 0.12);
+    --color-error: #DC2626;
+    --color-error-soft: rgba(220, 38, 38, 0.12);
+    --color-info: #00AEEF;
+    --color-info-soft: rgba(0, 174, 239, 0.12);
+
+    /* ---------- Typography ---------- */
+    --font-sans: 'Poppins', 'Tajawal', 'Inter', 'Cairo', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji';
+    --font-arabic: 'Tajawal', 'Cairo', 'Poppins', 'Inter', sans-serif;
+    --font-display: 'Poppins', 'Inter', sans-serif;
+
+    /* ---------- Legacy Aliases (transitional safety) ---------- */
+    --color-accent: #D9A441;
+    --color-accent-hover: #B8872E;
+    --color-accent-soft: rgba(217, 164, 65, 0.12);
+
+    --color-ink: #0a0a0a;
+    --color-surface: #171717;
+    --color-surface-2: #262626;
+    --color-border: #262626;
+    --color-muted: #737373;
+
+    /* ---------- Transitional: remap lime -> gold ----------
+       Allows 413 existing lime-* refs to render gold
+       Remove in Phase 3+ after file-by-file replacement */
+    --color-lime-200: #ECD596;
+    --color-lime-300: #E3C06A;
+    --color-lime-400: #D9A441;
+    --color-lime-500: #C8922F;
+    --color-lime-600: #B8872E;
+    --color-lime-700: #8A6420;
+    --color-lime-800: #5C4417;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    background: #0a0a0a;
+    color: #fafafa;
+}
+
+html[dir='rtl'] body {
+    font-family: var(--font-arabic);
+}
+
+a, button, input, select, textarea {
+    transition: color 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+::selection {
+    background: rgba(217, 164, 65, 0.35);
+    color: #ffffff;
+}
+
+:focus-visible {
+    outline: 2px solid rgba(217, 164, 65, 0.6);
+    outline-offset: 2px;
+}
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #262626; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #404040; }
+
+/* ============================================================
+   MOTION
+   ============================================================ */
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in { animation: fade-in 0.5s ease-out both; }
+
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 40px rgba(217, 164, 65, 0.15); }
+    50%      { box-shadow: 0 0 80px rgba(217, 164, 65, 0.30); }
+}
+.animate-glow { animation: glow 3s ease-in-out infinite; }
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+
+.line-clamp-1 { display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+.line-clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* ============================================================
+   COMPONENT CLASSES
+   ============================================================ */
+
+.btn-accent {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: #D9A441; color: #0a0a0a;
+    font-weight: 700; padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+}
+.btn-accent:hover { background: #B8872E; transform: translateY(-1px); }
+
+.btn-ghost {
+    display: inline-flex; align-items: center; justify-content: center;
+    background: transparent; color: #fafafa;
+    border: 1px solid #262626;
+    font-weight: 600; padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+}
+.btn-ghost:hover { border-color: #404040; background: #171717; }
+
+.card {
+    background: #171717;
+    border: 1px solid #262626;
+    border-radius: 0.75rem;
+}
+.card:hover {
+    border-color: #404040;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================================
+   SHOP LAYOUT GRID
+   ============================================================ */
+
+.shop-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+@media (min-width: 768px) {
+    .shop-grid { grid-template-columns: 220px minmax(0, 1fr); }
+}
+@media (min-width: 1024px) {
+    .shop-grid { grid-template-columns: 260px minmax(0, 1fr); }
+}
+
+/* ============================================================
+   WESALKOM BRAND UTILITIES (available for Phase 3+)
+   ============================================================ */
+
+.brand-gradient-navy {
+    background: linear-gradient(135deg, #1F2A36 0%, #131A22 100%);
+}
+.brand-gradient-gold {
+    background: linear-gradient(135deg, #D9A441 0%, #B8872E 100%);
+}
+.brand-shadow-gold {
+    box-shadow: 0 10px 40px -10px rgba(217, 164, 65, 0.40);
+}
+.brand-shadow-navy {
+    box-shadow: 0 10px 40px -10px rgba(31, 42, 54, 0.50);
+}

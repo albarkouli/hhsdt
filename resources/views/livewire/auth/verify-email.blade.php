@@ -13,7 +13,7 @@
         <div class="flex flex-col items-center justify-between space-y-3">
             <form method="POST" action="{{ route('verification.send') }}">
                 @csrf
-                <button type="submit" class="bg-lime-400 hover:bg-lime-300 text-black font-black py-3 px-4 rounded-lg shadow-[0_0_25px_rgba(163,230,53,0.25)] transition disabled:opacity-50 disabled:cursor-not-allowed w-full" >
+                <button type="submit" class="bg-gold hover:bg-gold-hover text-[#D6DEE6] font-black py-3 px-4 rounded-lg shadow-[0_0_25px_rgba(163,230,53,0.25)] transition disabled:opacity-50 disabled:cursor-not-allowed w-full" >
                     {{ __('Resend verification email') }}
                 </button>
             </form>

@@ -55,13 +55,13 @@
             />
 
             <div class="flex items-center justify-end">
-                <button type="submit" class="bg-lime-400 hover:bg-lime-300 text-black font-black py-3 px-4 rounded-lg shadow-[0_0_25px_rgba(163,230,53,0.25)] transition disabled:opacity-50 disabled:cursor-not-allowed w-full" data-test="register-user-button">
+                <button type="submit" class="bg-gold hover:bg-gold-hover text-[#D6DEE6] font-black py-3 px-4 rounded-lg shadow-[0_0_25px_rgba(163,230,53,0.25)] transition disabled:opacity-50 disabled:cursor-not-allowed w-full" data-test="register-user-button">
                     {{ __('Create account') }}
                 </button>
             </div>
         </form>
 
-        <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
+        <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-[#A8B5C1] dark:text-[#A8B5C1]">
             <span>{{ __('Already have an account?') }}</span>
             <flux:link :href="route('login')" wire:navigate>{{ __('Log in') }}</flux:link>
         </div>

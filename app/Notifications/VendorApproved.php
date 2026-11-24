@@ -24,10 +24,10 @@ class VendorApproved extends Notification implements ShouldQueue
         return (new MailMessage)
             ->subject('Your store is now active!')
             ->greeting("Congratulations, {$notifiable->name}!")
-            ->line("Your store **{$this->vendor->name}** has been approved and is now live on Libya Marketplace.")
+            ->line("Your store **{$this->vendor->name}** has been approved and is now live on WESALKOM.")
             ->line('You can start adding products right away.')
             ->action('Go to my store dashboard', route('vendor.dashboard'))
-            ->line('Welcome to Libya Marketplace!');
+            ->line('Welcome to WESALKOM!');
     }
 
     public function toArray(object $notifiable): array

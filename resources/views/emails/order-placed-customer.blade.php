@@ -10,14 +10,14 @@
         {{-- Header --}}
         <div style="text-align:center; margin-bottom:24px;">
             <div style="display:inline-block; background:#4f46e5; color:#fff; padding:12px 24px; border-radius:8px; font-size:18px; font-weight:700;">
-                Libya Marketplace
+                WESALKOM
             </div>
         </div>
 
         {{-- Card --}}
         <div style="background:#fff; border-radius:12px; padding:32px; box-shadow:0 1px 3px rgba(0,0,0,0.06);">
 
-            <h1 style="font-size:22px; margin:0 0 8px; color:#111827;">Thank you for your order! ✅</h1>
+            <h1 style="font-size:22px; margin:0 0 8px; color:#111827;">Thank you for your order! âœ…</h1>
             <p style="font-size:15px; color:#6b7280; margin:0 0 24px;">
                 Hi {{ $customer->name }}, we've received your order and sent it to the vendor. They'll review and confirm it shortly.
             </p>
@@ -45,7 +45,7 @@
                     <tr style="border-bottom:1px solid #f3f4f6;">
                         <td style="padding:10px 0; font-size:14px; color:#374151;">
                             {{ $item->product_name }}
-                            <span style="color:#9ca3af; font-size:12px;">× {{ $item->quantity }}</span>
+                            <span style="color:#9ca3af; font-size:12px;">أ— {{ $item->quantity }}</span>
                         </td>
                         <td style="padding:10px 0; text-align:right; font-size:14px; font-weight:600; color:#111827;">
                             {{ number_format((float) $item->subtotal, 2) }} LYD
@@ -70,14 +70,14 @@
 
             {{-- Payment --}}
             <p style="font-size:13px; color:#6b7280; margin:20px 0 0;">
-                💰 <strong>Payment method:</strong> Cash on Delivery
+                ًں’° <strong>Payment method:</strong> Cash on Delivery
             </p>
 
             {{-- CTA --}}
             <div style="text-align:center; margin-top:28px;">
                 <a href="{{ $orderUrl }}"
                    style="display:inline-block; padding:12px 24px; background:#4f46e5; color:#fff; text-decoration:none; border-radius:8px; font-weight:600; font-size:14px;">
-                    View order details →
+                    View order details â†’
                 </a>
             </div>
         </div>
@@ -87,7 +87,7 @@
             <p style="margin:0 0 8px;">
                 Need help? Reply to this email or contact us via <a href="{{ url('/shop/contact') }}" style="color:#4f46e5;">our contact page</a>.
             </p>
-            <p style="margin:0;">© {{ date('Y') }} Libya Marketplace. All rights reserved.</p>
+            <p style="margin:0;">آ© {{ date('Y') }} WESALKOM. All rights reserved.</p>
         </div>
     </div>
 </body>

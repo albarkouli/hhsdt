@@ -1,37 +1,36 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="{{ app()->getLocale() === 'ar' ? 'rtl' : 'ltr' }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
-    <meta name="theme-color" content="#0a0a0a">
-    <title>{{ $title ?? config('app.name') }}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>{{ $title ?? 'wesalkom | وصـــــــــالكم' }}</title>
+    <link rel="icon" type="image/svg+xml" href="/brand/favicon.svg">
+    @include('components.brand.head')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="min-h-screen bg-[#0a0a0a] text-gray-100 antialiased flex items-center justify-center p-4">
-    <div class="w-full max-w-md">
-        <div class="flex justify-center mb-8">
-            <a href="{{ route('home') }}" class="flex items-center gap-2.5 group">
-                <div class="w-10 h-10 rounded-lg bg-lime-400 flex items-center justify-center transition-transform group-hover:rotate-6">
-                    <svg class="w-5 h-5 text-black" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3z"/>
-                    </svg>
+<body class="min-h-screen bg-[#17212B] text-[#D6DEE6] antialiased">
+    <div class="min-h-screen flex flex-col">
+        <header class="py-6 px-4 sm:px-6">
+            <div class="max-w-7xl mx-auto flex items-center justify-between">
+                <x-brand.logo variant="bilingual" tone="dark" size="md" :href="route('home')" />
+                <a href="{{ route('home') }}" class="text-sm font-semibold text-[#A8B5C1] hover:text-gold transition">
+                    {{ app()->getLocale() === 'ar' ? '← العودة للمتجر' : 'Back to shop →' }}
+                </a>
+            </div>
+        </header>
+
+        <main class="flex-1 flex items-center justify-center px-4 py-8">
+            <div class="w-full max-w-md">
+                <div class="bg-[#263543] border border-[#344453] rounded-2xl p-6 sm:p-8 shadow-2xl">
+                    {{ $slot }}
                 </div>
-                <span class="text-2xl font-black tracking-tight text-white">Libya<span class="text-lime-400">.</span>Market</span>
-            </a>
-        </div>
+            </div>
+        </main>
 
-        <div class="bg-[#171717] border border-gray-800 rounded-2xl p-6 sm:p-8 shadow-2xl">
-            {{ $slot }}
-        </div>
-
-        <div class="mt-6 text-center text-xs text-gray-500">
-            &copy; {{ date('Y') }} Libya Marketplace
-        </div>
+        <footer class="py-6 text-center text-xs text-[#A8B5C1]">
+            &copy; {{ date('Y') }} wesalkom | وصـــــــــالكم
+        </footer>
     </div>
 </body>
 </html>

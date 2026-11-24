@@ -18,12 +18,12 @@
                 placeholder="email@example.com"
             />
 
-            <button type="submit" class="bg-lime-400 hover:bg-lime-300 text-black font-black py-3 px-4 rounded-lg shadow-[0_0_25px_rgba(163,230,53,0.25)] transition disabled:opacity-50 disabled:cursor-not-allowed w-full" data-test="email-password-reset-link-button">
+            <button type="submit" class="bg-gold hover:bg-gold-hover text-[#D6DEE6] font-black py-3 px-4 rounded-lg shadow-[0_0_25px_rgba(163,230,53,0.25)] transition disabled:opacity-50 disabled:cursor-not-allowed w-full" data-test="email-password-reset-link-button">
                 {{ __('Email password reset link') }}
             </button>
         </form>
 
-        <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-400">
+        <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-[#A8B5C1]">
             <span>{{ __('Or, return to') }}</span>
             <flux:link :href="route('login')" wire:navigate>{{ __('log in') }}</flux:link>
         </div>
