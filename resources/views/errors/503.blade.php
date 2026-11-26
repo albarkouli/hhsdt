@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Maintenance ط·آ·ط¢آ·ط·آ¢ط¢آ¢ط·آ·ط¢آ¢ط·آ¢ط¢آ· WESALKOM</title>
+    <title>Maintenance ?·?·?¢?·?·?¢?¢?¢?·?·?¢?¢?·?¢?¢?· WESALKOM</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css'])

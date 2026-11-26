@@ -44,13 +44,14 @@
 </head>
 <body>
 
+
     <table class="header">
         <tr>
             <td style="width: 60%;">
                 <div class="seller-name">{{ $invoice->snapshot['seller']['name'] }}</div>
                 @if($invoice->snapshot['seller']['city'])
                     <div class="seller-meta">
-                        {{ $invoice->snapshot['seller']['city'] }}@if($invoice->snapshot['seller']['address']) â€” {{ $invoice->snapshot['seller']['address'] }}@endif
+                        {{ $invoice->snapshot['seller']['city'] }}@if($invoice->snapshot['seller']['address']) — {{ $invoice->snapshot['seller']['address'] }}@endif
                     </div>
                 @endif
                 @if($invoice->snapshot['seller']['phone'])
@@ -58,7 +59,7 @@
                 @endif
             </td>
             <td style="width: 40%; text-align: left;">
-                <div class="invoice-title">ظپط§طھظˆط±ط©</div>
+                <div class="invoice-title">فاتورة</div>
                 <div class="invoice-number" dir="ltr">{{ $invoice->invoice_number }}</div>
                 @if($invoice->isCancelled())
                     <div class="badge badge-cancelled" dir="ltr">CANCELLED</div>
@@ -73,7 +74,7 @@
     <table class="meta">
         <tr>
             <td style="width: 50%;">
-                <div class="label">ظپط§طھظˆط±ط© ط¥ظ„ظ‰</div>
+                <div class="label">فاتورة إلى</div>
                 <div class="buyer-name">{{ $invoice->snapshot['buyer']['name'] }}</div>
                 <div class="buyer-detail">{{ $invoice->snapshot['buyer']['address'] }}</div>
                 <div class="buyer-detail">{{ $invoice->snapshot['buyer']['city'] }}</div>
@@ -81,9 +82,9 @@
             </td>
             <td style="width: 50%;">
                 <table class="info-table">
-                    <tr><td>طھط§ط±ظٹط® ط§ظ„ظپط§طھظˆط±ط©:</td><td dir="ltr" style="text-align: left;">{{ $invoice->issued_at->format('Y-m-d') }}</td></tr>
+                    <tr><td>تاريخ الفاتورة:</td><td dir="ltr" style="text-align: left;">{{ $invoice->issued_at->format('Y-m-d') }}</td></tr>
                     <tr><td>ط±ظ‚ظ… ط§ظ„ط·ظ„ط¨:</td><td dir="ltr" style="text-align: left; font-family: monospace;">{{ $invoice->snapshot['order_number'] }}</td></tr>
-                    <tr><td>ط·ط±ظٹظ‚ط© ط§ظ„ط¯ظپط¹:</td><td>{{ $invoice->snapshot['payment_method'] === 'cash_on_delivery' ? 'ط§ظ„ط¯ظپط¹ ط¹ظ†ط¯ ط§ظ„ط§ط³طھظ„ط§ظ…' : $invoice->snapshot['payment_method'] }}</td></tr>
+                    <tr><td>طريقة الدفع:</td><td>{{ $invoice->snapshot['payment_method'] === 'cash_on_delivery' ? 'الدفع عند الاستلام' : $invoice->snapshot['payment_method'] }}</td></tr>
                 </table>
             </td>
         </tr>
@@ -93,10 +94,10 @@
         <thead>
             <tr>
                 <th style="width: 6%;">#</th>
-                <th style="width: 44%;">ط§ظ„ظ…ظ†طھط¬</th>
-                <th style="width: 12%;">ط§ظ„ظƒظ…ظٹط©</th>
+                <th style="width: 44%;">المنتج</th>
+                <th style="width: 12%;">الكمية</th>
                 <th style="width: 19%;">ط§ظ„ط³ط¹ط±</th>
-                <th style="width: 19%;">ط§ظ„ط¥ط¬ظ…ط§ظ„ظٹ</th>
+                <th style="width: 19%;">الإجمالي</th>
             </tr>
         </thead>
         <tbody>
@@ -118,16 +119,16 @@
 
     <div class="totals">
         <table>
-            <tr><td class="label">ط§ظ„ظ…ط¬ظ…ظˆط¹ ط§ظ„ظپط±ط¹ظٹ:</td><td class="value">{{ number_format($invoice->snapshot['totals']['subtotal'], 2) }} LYD</td></tr>
-            <tr><td class="label">ط§ظ„ط´ط­ظ†:</td><td class="value">{{ $invoice->snapshot['totals']['shipping_cost'] > 0 ? number_format($invoice->snapshot['totals']['shipping_cost'], 2) . ' LYD' : 'ظ…ط¬ط§ظ†ظٹ' }}</td></tr>
-            <tr class="grand"><td>ط§ظ„ط¥ط¬ظ…ط§ظ„ظٹ:</td><td class="value">{{ number_format($invoice->snapshot['totals']['total'], 2) }} LYD</td></tr>
+            <tr><td class="label">المجموع الفرعي:</td><td class="value">{{ number_format($invoice->snapshot['totals']['subtotal'], 2) }} LYD</td></tr>
+            <tr><td class="label">الشحن:</td><td class="value">{{ $invoice->snapshot['totals']['shipping_cost'] > 0 ? number_format($invoice->snapshot['totals']['shipping_cost'], 2) . ' LYD' : 'مجاني' }}</td></tr>
+            <tr class="grand"><td>الإجمالي:</td><td class="value">{{ number_format($invoice->snapshot['totals']['total'], 2) }} LYD</td></tr>
         </table>
     </div>
 
     <div class="footer">
-        <p>ط´ظƒط±ط§ظ‹ ظ„طھط³ظˆظ‚ظƒظ… ظ…ط¹ظ†ط§</p>
-        <p>WESALKOM â€” {{ config('app.url') }}</p>
-        <p>ظ‡ط°ظ‡ ظپط§طھظˆط±ط© ظ…ظڈظˆظ„ظ‘ط¯ط© ط¢ظ„ظٹط§ظ‹طŒ ظ„ط§ طھط­طھط§ط¬ ط¥ظ„ظ‰ طھظˆظ‚ظٹط¹.</p>
+        <p>شكراً لتسوقكم معنا</p>
+        <p>WESALKOM — {{ config('app.url') }}</p>
+        <p>هذه فاتورة مُولّدة آلياً، لا تحتاج إلى توقيع.</p>
     </div>
 
 </body>

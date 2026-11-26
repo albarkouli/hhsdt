@@ -15,7 +15,7 @@ $arColor = "text-[#f7f4ef]";
 // Build Arabic name programmatically — exact tatweel count, guaranteed
 $brandEn = 'wesalkom';
 $tatweel = "\u{0640}";
-$brandAr = 'و' . 'ص' . str_repeat($tatweel, 12) . 'ا' . 'ل' . 'ك' . 'م';
+$brandAr = 'وِ' . 'ص' . str_repeat($tatweel, 12) . 'ا' . 'ل' . 'ك' . 'م';
 $brandSep = ' | ';
 
 $textSizes = [
